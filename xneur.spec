@@ -17,8 +17,6 @@ Release:	%mkrel %{rel}
 URL:		http://www.xneur.ru
 License:	GPLv2
 Source:		%{name}-%{version}.tar.bz2
-# -- corrected settings in default xneurrc
-#Patch0:		xneur-0.9.7-03_xneurrc.patch
 Group:		System/X11
 Summary:	X Neural Switcher
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
