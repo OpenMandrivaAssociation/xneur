@@ -1,11 +1,3 @@
-#
-# spec file for package xneur
-#
-# Copyright (c) 2006-2008 Nikolay Derkach <nderkach@gmail.com>
-# This file and all modifications and additions to the pristine
-# package are under the same license as the package itself.
-#
-
 # norootforbuild
 
 %define rel 1
@@ -20,7 +12,7 @@ Source:		%{name}-%{version}.tar.bz2
 Group:		System/X11
 Summary:	X Neural Switcher
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-BuildRequires:  pcre-devel glib2-devel aspell-devel libgomp-devel
+BuildRequires:  pcre0-devel glib2-devel aspell-devel libgomp-devel
 BuildRequires:  xosd-devel gstreamer0.10-devel libnotify-devel libenchant-devel
 Requires: aspell-ru
 Recommends:	gxneur
@@ -118,5 +110,4 @@ ln -s %{_datadir}/%name/languages/ru %{_datadir}/%name/languages/ru\(winkeys\)
 %dir %{_libdir}/%{name}  
 %{_libdir}/%{name}/*.so  
 %{_libdir}/pkgconfig/*.pc  
-%{_includedir}/%{name}  
-
+%{_includedir}/%{name}
