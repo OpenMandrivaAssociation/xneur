@@ -1,6 +1,6 @@
 # norootforbuild
 
-%define rel 1
+%define rel 2
 %define soname 11
 
 Name:		xneur
