@@ -12,9 +12,9 @@ Source:		%{name}-%{version}.tar.bz2
 Group:		System/X11
 Summary:	X Neural Switcher
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-BuildRequires:  pcre-devel
+BuildRequires:  pcre-devel enchant1-devel
 BuildRequires:  glib2-devel aspell-devel libgomp-devel
-BuildRequires:  xosd-devel gstreamer0.10-devel libnotify-devel libenchant-devel
+BuildRequires:  xosd-devel gstreamer0.10-devel libnotify-devel
 Requires: aspell-ru
 Recommends:	gxneur
 
