@@ -1,9 +1,10 @@
-# norootforbuild
-
 %define rel 2
+%define name xneur
 %define soname 11
+%define libname %mklibname %{name} %{soname}
+%define develname %mklibname %{name} -d
 
-Name:		xneur
+Name:		%{name}
 Version:	0.11.1
 Release:	%mkrel %{rel}
 URL:		http://www.xneur.ru
@@ -23,7 +24,7 @@ Recommends:	gxneur
 X Neural Switcher (http://www.xneur.ru).
 Automatical switcher of keyboard layout.
 
-%package %mklibname -d xneur
+%package -n %{develname}
 Summary:        Include Files and Libraries  
 Group:          Development/X11
 Requires:       libxneur%{soname} = %{version}  
@@ -32,21 +33,16 @@ Requires:       pcre-devel
 Provides:       xneur-devel = %{version}  
 Obsoletes:      xneur-devel < 0.9.9  
   
-%description %mklibname -d xneur  
+%description -n %{develname} 
 Development files for the package XNeur.
 
-Authors:
--------
- Andrew Crew Kuznetsov <andrewcrew@rambler.ru>
- Yankin Nickolay Valerevich <web@softodrom.ru>
-
-%package %mklibname xneur %{soname}
+%package -n %{libname}
 Summary:        XNeur Shared Library
 Group:          System/Libraries
 Provides:	libxnconfig%{soname} = %{version}
 Obsoletes:	libxnconfig%{soname} < %{version}
 
-%description %mklibname xneur %{soname}
+%description -n %{libname}
 Shared libraries for the package XNeur.
 
 %prep
@@ -90,11 +86,11 @@ ln -s %{_datadir}/%name/languages/ru %{_datadir}/%name/languages/ru\(winkeys\)
 # Upstream updates a config file. So we must replace it.  
 %config %{_sysconfdir}/%{name}/*  
   
-%files %mklibname xneur %{soname}  
+%files -n %{libname} 
 %defattr(-,root,root)  
-%{_libdir}/libxn*.so.*  
+%{_libdir}/libxn*.so.* 
   
-%files %mklibname -d xneur
+%files -n %{develname}
 %defattr(-,root,root)  
 %{_libdir}/*.so  
 %dir %{_libdir}/%{name}  
