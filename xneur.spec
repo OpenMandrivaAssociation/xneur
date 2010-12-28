@@ -23,21 +23,16 @@ Recommends:	gxneur
 X Neural Switcher (http://www.xneur.ru).
 Automatical switcher of keyboard layout.
 
-Authors:
--------
- Andrew Crew Kuznetsov <andrewcrew@rambler.ru>
- Yankin Nickolay Valerevich <web@softodrom.ru>
-
-%package -n libxneur-devel  
+%package %mklibname -d xneur
 Summary:        Include Files and Libraries  
 Group:          Development/X11
 Requires:       libxneur%{soname} = %{version}  
 Requires:       %{name} = %{version}  
-Requires:       pcre-devel  
+Requires:       pcre-devel
 Provides:       xneur-devel = %{version}  
 Obsoletes:      xneur-devel < 0.9.9  
   
-%description -n libxneur-devel  
+%description %mklibname -d xneur  
 Development files for the package XNeur.
 
 Authors:
@@ -45,19 +40,14 @@ Authors:
  Andrew Crew Kuznetsov <andrewcrew@rambler.ru>
  Yankin Nickolay Valerevich <web@softodrom.ru>
 
-%package -n libxneur%{soname}
+%package %mklibname xneur %{soname}
 Summary:        XNeur Shared Library
 Group:          System/Libraries
 Provides:	libxnconfig%{soname} = %{version}
 Obsoletes:	libxnconfig%{soname} < %{version}
 
-%description -n libxneur%{soname}
+%description %mklibname xneur %{soname}
 Shared libraries for the package XNeur.
-
-Authors:
---------
-    Andrew Crew Kuznetsov <andrewcrew@rambler.ru>
-    Yankin Nickolay Valerevich <web@softodrom.ru>
 
 %prep
 %setup -n %{name}-%{version} -q
@@ -100,11 +90,11 @@ ln -s %{_datadir}/%name/languages/ru %{_datadir}/%name/languages/ru\(winkeys\)
 # Upstream updates a config file. So we must replace it.  
 %config %{_sysconfdir}/%{name}/*  
   
-%files -n libxneur%{soname}  
+%files %mklibname xneur %{soname}  
 %defattr(-,root,root)  
 %{_libdir}/libxn*.so.*  
   
-%files -n libxneur-devel  
+%files %mklibname -d xneur
 %defattr(-,root,root)  
 %{_libdir}/*.so  
 %dir %{_libdir}/%{name}  
