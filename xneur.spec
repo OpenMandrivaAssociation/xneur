@@ -84,10 +84,8 @@ make %{?jobs:-j %jobs}
 %clean
 rm -rf %{buildroot}
 
-%post -n libxneur%{soname} -p /sbin/ldconfig
+%post
 ln -s %{_datadir}/%name/languages/ru %{_datadir}/%name/languages/ru\(winkeys\)
-
-%postun -n libxneur%{soname} -p /sbin/ldconfig
   
 %files -f %{name}.lang  
 %defattr(-,root,root)  
