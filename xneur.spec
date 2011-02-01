@@ -1,11 +1,11 @@
-%define rel 2
+%define rel 1
 %define name xneur
-%define soname 11
+%define soname 12
 %define libname %mklibname %{name} %{soname}
 %define develname %mklibname %{name} -d
 
 Name:		%{name}
-Version:	0.11.1
+Version:	0.12.0
 Release:	%mkrel %{rel}
 URL:		http://www.xneur.ru
 License:	GPLv2
