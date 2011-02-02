@@ -27,11 +27,11 @@ Automatical switcher of keyboard layout.
 %package -n %{develname}
 Summary:        Include Files and Libraries  
 Group:          Development/X11
-Requires:       libxneur%{soname} = %{version}  
+Requires:       {_lib}xneur%{soname} = %{version}  
 Requires:       %{name} = %{version}  
 Requires:       pcre-devel
 Provides:       xneur-devel = %{version}  
-Obsoletes:      xneur-devel < 0.9.9  
+Obsoletes:      xneur-devel < 0.11.1  
   
 %description -n %{develname} 
 Development files for the package XNeur.
