@@ -20,6 +20,7 @@ BuildRequires:  pcre-devel
 BuildRequires:	enchant-devel
 BuildRequires:  glib2-devel aspell-devel
 BuildRequires:  xosd-devel gstreamer0.10-devel libnotify-devel
+BuildRequires:	gettext-devel
 Requires:	aspell-ru
 Suggests:	gxneur
 
