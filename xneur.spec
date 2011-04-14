@@ -1,4 +1,4 @@
-%define rel 4
+%define rel 5
 %define name xneur
 %define soname 12
 %define libname %mklibname %{name} %{soname}
@@ -33,7 +33,8 @@ Summary:        Include Files and Libraries
 Group:          Development/X11
 Requires:       %{libname} = %{version}  
 Provides:       xneur-devel = %{version}  
-Obsoletes:      xneur-devel < 0.11.1  
+Obsoletes:      xneur-devel < 0.11.1
+Obsoletes:	xneur-%{_lib}xneur-devel < %{version}
   
 %description -n %{develname} 
 Development files for the package XNeur.
@@ -41,6 +42,7 @@ Development files for the package XNeur.
 %package -n %{libname}
 Summary:        XNeur Shared Library
 Group:          System/Libraries
+Obsoletes:	xneur-%{_lib}xneur11
 
 %description -n %{libname}
 Shared libraries for the package XNeur.
