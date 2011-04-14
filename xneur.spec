@@ -1,4 +1,4 @@
-%define rel 3
+%define rel 4
 %define name xneur
 %define soname 12
 %define libname %mklibname %{name} %{soname}
@@ -10,15 +10,18 @@ Release:	%mkrel %{rel}
 URL:		http://www.xneur.ru
 License:	GPLv2
 Source:		%{name}-%{version}.tar.bz2
+Patch0:		xneur-0.12.0-cflags.patch
+Patch1:		xneur-0.12.0-libnotify.patch
+Patch2:		xneur-0.12.0-link.patch
 Group:		System/X11
 Summary:	X Neural Switcher
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-BuildRequires:  %{_lib}pcre-devel
+BuildRequires:  pcre-devel
 BuildRequires:	enchant-devel
-BuildRequires:  glib2-devel aspell-devel libgomp-devel
+BuildRequires:  glib2-devel aspell-devel
 BuildRequires:  xosd-devel gstreamer0.10-devel libnotify-devel
-Requires: aspell-ru
-Recommends:	gxneur
+Requires:	aspell-ru
+Suggests:	gxneur
 
 %description
 X Neural Switcher (http://www.xneur.ru).
@@ -27,9 +30,7 @@ Automatical switcher of keyboard layout.
 %package -n %{develname}
 Summary:        Include Files and Libraries  
 Group:          Development/X11
-Requires:       %{_lib}xneur%{soname} = %{version}  
-Requires:       %{name} = %{version}  
-Requires:       pcre-devel
+Requires:       %{libname} = %{version}  
 Provides:       xneur-devel = %{version}  
 Obsoletes:      xneur-devel < 0.11.1  
   
@@ -39,31 +40,24 @@ Development files for the package XNeur.
 %package -n %{libname}
 Summary:        XNeur Shared Library
 Group:          System/Libraries
-Provides:	libxnconfig%{soname} = %{version}
-Obsoletes:	libxnconfig%{soname} < %{version}
 
 %description -n %{libname}
 Shared libraries for the package XNeur.
 
 %prep
 %setup -n %{name}-%{version} -q
-#%patch0
-# a hack for libaspell
-%if %{_arch} == x86_64
-sed -i -e "s/aspell_dir\/lib/aspell_dir\/lib64/" configure
-%endif
+%patch0 -p0
+%patch1 -p0
+%patch2 -p0
 
 %build
-./configure --libdir=%{_libdir} --prefix=/usr
-make %{?jobs:-j %jobs}
+autoreconf -fi
+%configure2_5x
+%make
 
 %install
-%{makeinstall}  
-# and some other hacks
-#%if %{_arch} == x86_64
-#mkdir $RPM_BUILD_ROOT/usr/lib64/
-#mv -f $RPM_BUILD_ROOT/usr/lib/* $RPM_BUILD_ROOT/usr/lib64/
-#%endif
+rm -fr %buildroot
+%{makeinstall_std}
 %{__rm} -f %{buildroot}%{_libdir}/{%{name}/*.*a,*.*a}  
 %find_lang %{name}  
 
