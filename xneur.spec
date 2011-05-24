@@ -11,7 +11,7 @@ URL:		http://www.xneur.ru
 License:	GPLv2
 Source:		%{name}-%{version}.tar.bz2
 Patch0:		xneur-0.12.0-cflags.patch
-Patch1:		xneur-0.12.0-libnotify.patch
+#Patch1:		xneur-0.12.0-libnotify.patch
 Patch2:		xneur-0.12.0-link.patch
 Group:		System/X11
 Summary:	X Neural Switcher
@@ -50,7 +50,7 @@ Shared libraries for the package XNeur.
 %prep
 %setup -n %{name}-%{version} -q
 %patch0 -p0
-%patch1 -p0
+#patch1 -p0
 %patch2 -p0
 
 %build
@@ -81,7 +81,8 @@ ln -s %{_datadir}/%name/languages/ru %{_datadir}/%name/languages/ru\(winkeys\)
 %doc %{_mandir}/man5/*  
 %dir %{_sysconfdir}/%{name}  
 # Upstream updates a config file. So we must replace it.  
-%config %{_sysconfdir}/%{name}/*  
+%config %{_sysconfdir}/%{name}/*
+%{_datadir}/icons/* 
   
 %files -n %{libname} 
 %defattr(-,root,root)  
