@@ -1,4 +1,4 @@
-%define rel 1
+%define rel 2
 %define name xneur
 %define soname 13
 %define libname %mklibname %{name} %{soname}
