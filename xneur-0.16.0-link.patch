@@ -1,0 +1,34 @@
+diff --git a/lib/config/Makefile.am b/lib/config/Makefile.am
+index f546bfc..8399e65 100644
+--- a/lib/config/Makefile.am
++++ b/lib/config/Makefile.am
+@@ -9,7 +9,6 @@ noinst_HEADERS =		\
+ 	xnconfig_files.h	
+ 
+ libxnconfig_la_SOURCES =	\
+-	xnconfig_files.c	\
+ 	xnconfig.c		
+ 
+ libxnconfig_la_CFLAGS = -I@top_srcdir@/lib/misc -I@top_srcdir@/lib/main -I@top_srcdir@/lib/lib @DEFAULT_CFLAGS@
+diff --git a/lib/lib/Makefile.am b/lib/lib/Makefile.am
+index 5dd0c8e..305ca5d 100644
+--- a/lib/lib/Makefile.am
++++ b/lib/lib/Makefile.am
+@@ -6,6 +6,7 @@ xneur_includedir = $(includedir)/xneur
+ xneur_include_HEADERS = xneur.h		
+ 
+ libxneur_la_SOURCES =		\
++	../config/xnconfig_files.c \
+ 	xneurlib.c		
+ 	xneur.h		
+ 
+diff --git a/plugins/statistic/Makefile.am b/plugins/statistic/Makefile.am
+index a4feb12..38a9ec6 100644
+--- a/plugins/statistic/Makefile.am
++++ b/plugins/statistic/Makefile.am
+@@ -10,4 +10,4 @@ libxnstatistic_la_SOURCES = \
+ libxnstatistic_la_CFLAGS = -I@top_srcdir@/lib/config -I@top_srcdir@/lib/lib @DEFAULT_CFLAGS@
+ libxnstatistic_la_LDFLAGS = @X11_LIBS@
+ 	 
+-libxnstatistic_la_LIBADD = 
++libxnstatistic_la_LIBADD = @X11_LIBS@ ../../lib/config/libxnconfig.la

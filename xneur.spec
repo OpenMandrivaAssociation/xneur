@@ -1,25 +1,24 @@
-%define rel 2
+%define rel 1
 %define name xneur
-%define soname 13
+%define soname 16
 %define libname %mklibname %{name} %{soname}
 %define develname %mklibname %{name} -d
 
 Name:		%{name}
-Version:	0.13.0
+Version:	0.16.0
 Release:	%mkrel %{rel}
 URL:		http://www.xneur.ru
 License:	GPLv2
-Source:		%{name}-%{version}.tar.bz2
+Source0:	http://dists.xneur.ru/release-%{version}/tgz/%{name}-%{version}.tar.bz2
 Patch0:		xneur-0.12.0-cflags.patch
 #Patch1:		xneur-0.12.0-libnotify.patch
-Patch2:		xneur-0.12.0-link.patch
+Patch2:		xneur-0.16.0-link.patch
 Group:		System/X11
 Summary:	X Neural Switcher
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-BuildRequires:  pcre-devel
+BuildRequires:  pkgconfig(libpcre)
 BuildRequires:	enchant-devel
-BuildRequires:  glib2-devel aspell-devel
-BuildRequires:  xosd-devel gstreamer0.10-devel libnotify-devel
+BuildRequires:  pkgconfig(glib-2.0) aspell-devel
+BuildRequires:  xosd-devel pkgconfig(gstreamer-0.10) pkgconfig(libnotify)
 BuildRequires:	gettext-devel
 Requires:	aspell-ru
 Suggests:	gxneur
@@ -51,7 +50,7 @@ Shared libraries for the package XNeur.
 %setup -n %{name}-%{version} -q
 %patch0 -p0
 #patch1 -p0
-%patch2 -p0
+%patch2 -p1
 
 %build
 autoreconf -fi
@@ -59,19 +58,14 @@ autoreconf -fi
 %make
 
 %install
-rm -fr %buildroot
 %{makeinstall_std}
 %{__rm} -f %{buildroot}%{_libdir}/{%{name}/*.*a,*.*a}  
 %find_lang %{name}  
-
-%clean
-rm -rf %{buildroot}
 
 %post
 ln -s %{_datadir}/%name/languages/ru %{_datadir}/%name/languages/ru\(winkeys\)
   
 %files -f %{name}.lang  
-%defattr(-,root,root)  
 %doc AUTHORS ChangeLog NEWS README TODO  
 %{_datadir}/%{name}  
 %{_bindir}/*  
@@ -85,11 +79,9 @@ ln -s %{_datadir}/%name/languages/ru %{_datadir}/%name/languages/ru\(winkeys\)
 %{_datadir}/icons/* 
   
 %files -n %{libname} 
-%defattr(-,root,root)  
 %{_libdir}/libxn*.so.* 
   
 %files -n %{develname}
-%defattr(-,root,root)  
 %{_libdir}/*.so  
 %dir %{_libdir}/%{name}  
 %{_libdir}/%{name}/*.so  
