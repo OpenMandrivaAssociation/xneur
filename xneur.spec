@@ -5,7 +5,7 @@
 
 Name:		%{name}
 Version:	0.17.0
-Release:	1
+Release:	2
 URL:		http://www.xneur.ru
 License:	GPLv2
 Source0:	%{name}-%{version}.tar.gz
