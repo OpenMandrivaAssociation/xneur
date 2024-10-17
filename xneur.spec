@@ -6,7 +6,7 @@
 Name:		%{name}
 Version:	0.17.0
 Release:	2
-URL:		http://www.xneur.ru
+URL:		https://www.xneur.ru
 License:	GPLv2
 Source0:	%{name}-%{version}.tar.gz
 Patch0:		xneur-0.12.0-cflags.patch
