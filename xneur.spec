@@ -13,6 +13,11 @@ Patch0:		xneur-0.12.0-cflags.patch
 Patch2:		xneur-0.16.0-link.patch
 Group:		System/X11
 Summary:	X Neural Switcher
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:  pkgconfig(libpcre)
 BuildRequires:	pkgconfig(enchant)
 BuildRequires:  pkgconfig(glib-2.0)
